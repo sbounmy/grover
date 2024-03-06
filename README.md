@@ -190,6 +190,16 @@ For example, to connect to a chrome instance started with docker using `docker r
 options = {"browser_ws_endpoint": "ws://localhost:3000/"}
 grover = Grover.new("https://mysite.com/path/to/thing", options)
 File.open("grover.png", "wb") { |f| f << grover.to_png }
+
+# or via config/initializers/grover.rb
+Grover.configure do |config|
+  config.options = {
+    browser_ws_endpoint: "ws://localhost:3000/",
+    browser_ws_ignore_https_errors: true # ignoreHTTPSErrors useful for localhost invalid certs
+  }
+end
+```
+# 
 ```
 
 You can also pass launch flags like this: `ws://localhost:3000/?--disable-speech-api`
